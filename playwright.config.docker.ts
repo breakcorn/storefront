@@ -1,16 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
-import { config } from "dotenv";
+// Environment variables should be set externally
 
 // Загружаем конфигурацию для тестов
 const NODE_ENV = process.env.NODE_ENV || "test";
 const envFile = `.env.${NODE_ENV}`;
 
-// Пытаемся загрузить environment-specific конфигурацию
-try {
-	config({ path: envFile });
-} catch {
-	config(); // fallback to .env
-}
+// Environment variables should be set externally
+// Example: NODE_ENV=test npx playwright test
 
 const PORT = process.env.PORT || 3000;
 const baseURL = process.env.BASE_URL || `http://localhost:${PORT}`;

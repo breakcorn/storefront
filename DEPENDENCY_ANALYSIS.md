@@ -10,10 +10,10 @@
 ### Safe Dependencies Updated
 
 - **@types/node**: `24.3.0` → `24.3.1` (patch)
-- **dotenv**: `17.2.1` → `17.2.2` (patch)
 - **svelte**: `5.38.6` → `5.38.7` (patch)
 - **@adyen/api-library**: `29.0.0` → `29.1.0` (minor)
 - **@types/url-join**: Removed (deprecated) ✅
+- **dotenv & dotenv-cli**: Removed (replaced with shell env vars) ✅
 
 ## ⚠️ Pending Major Update
 
@@ -75,6 +75,7 @@
 - ✅ **Runtime**: Application runs and serves content correctly
 - ⏳ **Performance**: TailwindCSS 4.x upgrade deferred for stability
 - ✅ **GraphQL**: Fixed codegen exports, all types working
+- ✅ **Environment Variables**: Removed dotenv, using shell env vars
 
 ## 🧪 Verification Results
 

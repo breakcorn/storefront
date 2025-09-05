@@ -1,7 +1,4 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
-import { config } from "dotenv";
-
-config();
 
 let schemaUrl = process.env.PUBLIC_SALEOR_API_URL;
 
