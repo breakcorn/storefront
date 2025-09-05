@@ -28,10 +28,8 @@ fi
 # Исправляем индексный файл для экспорта всех типов
 echo "🔧 Fixing GraphQL exports..."
 
-# Создаем базовый index.ts если он не существует или пустой
-if [ ! -f "src/gql/index.ts" ] || [ ! -s "src/gql/index.ts" ]; then
-    echo 'export * from "./gql";
+# Всегда перезаписываем index.ts для включения всех экспортов
+echo 'export * from "./gql";
 export * from "./graphql";' > src/gql/index.ts
-fi
 
 echo "✅ GraphQL types generated successfully!"
