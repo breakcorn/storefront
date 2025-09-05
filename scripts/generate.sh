@@ -1,22 +1,28 @@
 #!/bin/bash
 set -e
 
-# Скрипт для генерации GraphQL кода без npm warnings
+# Script for GraphQL code generation with .env loading
+# Usage: ./scripts/generate.sh [environment]
 
-echo "🔄 Generating GraphQL types..."
+ENV=${1:-development}
 
-# Создаем директорию src/gql если она не существует
+echo "🔄 Generating GraphQL types for $ENV environment..."
+
+# Load environment variables
+source "$(dirname "$0")/load-env.sh" "$ENV"
+
+# Create src/gql directory if it doesn't exist
 mkdir -p src/gql
 
-# Определяем правильный пакетный менеджер
+# Determine package manager
 if [ -f "pnpm-lock.yaml" ] && (command -v pnpm > /dev/null 2>&1 || command -v corepack > /dev/null 2>&1); then
-    # Если pnpm недоступен, активируем через corepack
+    # Enable pnpm via corepack if not available
     if ! command -v pnpm > /dev/null 2>&1; then
         corepack enable 2>/dev/null || true
     fi
     pnpm exec graphql-codegen --config .graphqlrc.ts
 elif command -v npx > /dev/null 2>&1; then
-    # Временно устанавливаем чистую конфигурацию для npm
+    # Set clean npm configuration
     export npm_config_verify_deps_before_run=false
     export npm_config__jsr_registry=
     npx graphql-codegen --config .graphqlrc.ts
